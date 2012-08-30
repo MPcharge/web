@@ -7,6 +7,12 @@ MPcharge is/will be an international math & physics competition, see the website
 
 It provides the info website, the admin/organizer interface, the team registration interface, and of course the submits and results.
 
+----------------------------------------------------------------------------------
+
+This app is meant to run on the [Heroku](http://www.heroku.com) infrastructure.
+
+To launch locally, use `foreman start` (foreman can be installed e.g. as a ruby gem).
+
 The Plan
 --------
 
@@ -21,8 +27,7 @@ The service will be RESTful, and therefore language-agnostic and simple to use f
 
 If you would like to talk into the development, feel free to comment on code, file issues, send pull requests or anything else -- any help is appreciated.
 
-----------------------------------------------------------------------------------
+License
+-------
 
-This app is meant to run on the [Heroku](http://www.heroku.com) infrastructure.
-
-To launch locally, use `foreman start` (foreman can be installed e.g. as a ruby gem).
+This work is licensed under the [GNU Affero General Public License](http://www.gnu.org/licenses/agpl-3.0.html).
