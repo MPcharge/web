@@ -20,6 +20,7 @@ I will attempt to make this
 
 - **fast**: able to handle hundreds of requests per second with a single instance
 - **reliable**: this means *stable* (i.e. always online), *secure* (i.e. no unauthorized access), and *fool- and weather-proof* (i.e. information remaining consistent under all circumstances)
+- **pretty**: the API as well as the code should be simple and easy to read
 
 The service will be RESTful, and therefore language-agnostic and simple to use from 3<sup>rd</sup>-party apps.
 
