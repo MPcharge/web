@@ -11,16 +11,23 @@ JASMINE="$REPO_ROOT/node_modules/.bin/jasmine-node"
 
 HL='\033[0;37m'; RESET='\033[0m'
 
-
 echo -e "$HL------------ unit ------------$RESET"
 "$JASMINE" --color --coffee "$TEST_DIR/unit"
+STATUS=$?
+
+[[ $STATUS != 0 ]] && exit $STATUS
 
 echo -e "$HL------------ app -------------$RESET"
 
 sh -c "$RUN_APP &> '$TEST_DIR/app/last_run.log'" &
 SERVER_PID=$!
-sleep 2 # start-up
+sleep 1 # start-up
 
 "$JASMINE" --color --coffee "$TEST_DIR/app"
+STATUS=$?
 
 kill $SERVER_PID
+
+[[ $STATUS != 0 ]] && exit $STATUS
+
+exit 0
