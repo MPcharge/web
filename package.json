@@ -21,4 +21,5 @@
   "devDependencies":
         { "jasmine-node": ">= 1.0.x" },
   "scripts":
-        { "start": "foreman start" } }
+        { "start": "foreman start" },
+        { "test": "scripts/run_tests.sh" } }
