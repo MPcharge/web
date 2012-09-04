@@ -21,14 +21,13 @@ echo -e "$HL------------ app -------------$RESET"
 
 export PORT=4999
 
-sh -c "export PORT=4999; $RUN_APP &> '$TEST_DIR/app/last_run.log'" &
-SERVER_PID=$!
-sleep 1 # start-up
+sh -c "$RUN_APP &> '$TEST_DIR/app/last_run.log'" &
+sleep 2 # start-up
 
 $JASMINE "$TEST_DIR/app"
 STATUS=$?
 
-kill $SERVER_PID
+killall -SIGINT foreman  # sorry, can't get PID to work...
 
 [[ $STATUS != 0 ]] && exit $STATUS
 
