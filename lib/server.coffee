@@ -9,7 +9,7 @@ force_https = false # TODO read from config
 # handle: the request handler (will receive request & response objects)
 # port and hostname: which port and address the server should listen to
 # callback: will be called once listening
-exports.run = (handle, port, hostname, callback) ->
+exports.run = (handle, port) ->
 
     srv = http.createServer (req, res) ->
 
@@ -23,7 +23,7 @@ exports.run = (handle, port, hostname, callback) ->
             ###
             handle req, res
 
-        .listen port, hostname, callback
+        .listen port, undefined, -> console.log "listening on port #{port}"
 
     # graceful shutdown
     process.on 'SIGTERM', srv.close  # stop accepting connections, terminate once event queue empty
