@@ -15,9 +15,11 @@
   "repositories":
         [ { "type": "git",
             "url": "http://github.com/MPcharge/web" } ],
-  "engines": { "node": ">= 0.8.x" },
+  "engines":
+        { "node": ">= 0.8.x",
+          "npm": ">= 1.1.x" },
   "dependencies":
-        { "coffee-script": "1.3.x" },
+        { "coffee-script": ">= 1.3.x" },
   "devDependencies":
         { "jasmine-node": ">= 1.0.x" },
   "scripts":
