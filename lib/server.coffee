@@ -24,6 +24,3 @@ exports.run = (handle, port) ->
             handle req, res
 
         .listen port, undefined, -> console.log "listening on port #{port}"
-
-    # graceful shutdown
-    process.on 'SIGTERM', srv.close  # stop accepting connections, terminate once event queue empty
