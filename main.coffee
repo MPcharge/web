@@ -1,14 +1,8 @@
-# Launches the server with the appropriate request handler
+# Launches the server with the appropriate request handler and resources
 
-server = require './lib/server'
+server  = require './lib/server'
+routing = require './lib/routing'
 
 port = process.env.PORT or 5000
 
-# stub until I have routing and resources and all follows
-
-# add `setTimeout` to simulate some long-running async operation
-handle = (req, res) ->
-    setTimeout ( -> res.writeHead 200; res.end 'hello world'),
-               if req.url == '/long' then 3000 else 47
-
-server.run handle, port
+server.run (routing.createHandler './index'), port
