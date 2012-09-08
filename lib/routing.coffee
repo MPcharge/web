@@ -8,7 +8,7 @@ mkPath = (require '../helpers/path').createPath
 literal = {}
 templated = []  # order matters here
 resource = (paths, description, responses_obj) ->
-    for path in paths.split ' '
+    for path in paths.split /\s+/
         path = mkPath path
         if (path.indexOf '{') == -1  # it is a literal URL
             literal[path] = { description, responses_obj }
