@@ -1,6 +1,6 @@
 describe 'path behavior', ->
 
-    path = require '../../helpers/path'
+    path = require '../helpers/path'
 
     it 'should canonicalize paths', ->
         expect(path.createPath '//ab/cd////ef//g').toEqual '/ab/cd/ef/g/'

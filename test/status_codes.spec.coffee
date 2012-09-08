@@ -1,4 +1,4 @@
-st = require '../../../lib/status_codes.coffee'
+st = require '../lib/status_codes.coffee'
 
 describe 'http status codes', ->
 
