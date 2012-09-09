@@ -1,4 +1,4 @@
-# provides routing functionality and handles resources
+# Provides routing functionality and handles resources
 
 url  = require 'url'
 st   = require './status_codes'
@@ -22,7 +22,7 @@ parseTemplated = (path) ->
     regex = path.replace templateParamsRegex, (_, token, greedy) ->
         tokens.push token
         if greedy then '(.*)' else '([^/]+)'
-    regex = new RegExp '^' + regex + '$'
+    regex = new RegExp '^'+regex+'$'
 
     paramsExtractor = (path) ->
         values = (path.match regex).slice 1
@@ -52,22 +52,22 @@ exports.createHandler = (index_filename) ->
 
         # TODO handle authorization + GET_ALL here
 
-        matching = literal[path]; params = {}  # literal first
+        matching = literal[path]  # literal first
         if not matching then [ matching, params ] = findTemplated path
 
         if not matching then render req, res, statusCode: st.NOT_FOUND; return
         if not matching.responses_obj[respondTo]
             s = if respondTo == 'OPTIONS' then st.OK else st.METHOD_NOT_ALLOWED
-            render req, res, statusCode: s, headers: allowedMethods(matching).join ', '
+            render req, res, statusCode: s, headers: 'Allow': methods(matching.responses_obj).join ', '
             return
 
         mparse req, res, (body) ->
-            render req, res, (matching.responses_obj[respondTo] params, body)  # TODO GET_ALL
+            render req, res, (matching.responses_obj[respondTo] (params or {}), body)  # TODO GET_ALL
         
     respond
 
 
-allowedMethods = (responses_obj) ->
+methods = (responses_obj) ->
     allow = ['OPTIONS']  # always allowed
     if responses_obj.GET? then allow.push 'HEAD' # implicitly defined by GET
     allow.push m for m of responses_obj

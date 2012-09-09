@@ -1,10 +1,9 @@
-# provides the base 'path' and 'trie' behavior
+# Provides the base path behavior
 
 path_prototype =
     prototype = String.prototype
 
-# makes a canonicalized path out of a string
-# separator: what separates path components
+# Makes a canonical path out of a string.
 exports.createPath = (path, separator='/') ->
     # canonicalize
     path += separator  # we always want it to end with the separator (just so it is consistent)

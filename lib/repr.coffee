@@ -9,13 +9,14 @@ exports.mparse = (req, res, callback) ->
     parse = parsers[req.headers['content-type']] or -> data: body, type: req.headers['content-type']
     
     req.setEncoding 'utf-8'; body = ''; req.on 'data', (chunk) -> body += chunk  # body is short
-    req.on 'end', -> callback (parse body)
+    req.on 'end', -> callback (if body then parse body else null)
 
 # Renders the given object into a response.
 # TODO templating and formats and languages and everything
 exports.render = (req, res, obj) ->
     obj.statusCode ?= 200  # default to OK if not specified
-    res.writeHead obj.statusCode, 'Content-Type': 'application/json'
-    delete obj.statusCode  # we don't need that in the body
-    res.write JSON.stringify obj unless req.method == 'HEAD'
+    obj.headers ?= {}; obj.headers['Content-Type'] = 'application/json'
+    res.writeHead obj.statusCode, obj.headers
+    delete obj.statusCode; delete obj.headers  # we don't need that in the body
+    res.write JSON.stringify obj unless req.method in ['HEAD','OPTIONS']
     res.end '\n\n'

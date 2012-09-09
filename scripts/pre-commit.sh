@@ -10,6 +10,6 @@ git stash -q --keep-index  # stash so that stuff not added to commit will not be
 scripts/run_tests.sh
 RESULT=$?
 git stash pop -q  # pop stash
-[[ $RESULT != 0 ]] && exit 1 # fail
+[[ $RESULT != 0 ]] && exit 1  # fail
 
 exit 0
